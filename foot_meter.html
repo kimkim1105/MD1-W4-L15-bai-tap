@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuyển đổi</title>
+    <style>
+        .col_left{
+            width: 50%;
+            float: left;
+        }
+        .col_right{
+            width: 50%;
+            float: right;
+        }
+        td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div class="col_left">
+    <h1>Foot to meter</h1>
+    <table id="board1" style="width: 50%">
+    </table>
+</div>
+<div class=col_right>
+    <h1>Meter to foot</h1>
+    <table id="board2" style="width: 50%">
+    </table>
+</div>
+</body>
+</html>
+<script>
+    function footToMeter(f){
+        let m = 0.305 * f;
+        return m;
+    }
+    function meterToFoot(m){
+        let f = 3.279 * m;
+        return f;
+    }
+    function table1(){
+        let row = "";
+        for (let i=1;i<=10;i++){
+            row += "<tr>";
+            row += "<td>"+i+"</td>";
+            row += "<td>"+footToMeter(i).toFixed(3)+"</td>";
+            row += "</tr>";
+        }
+        document.getElementById("board1").innerHTML = row;
+    }
+    table1();
+    function table2(){
+        let row = "";
+        for (let i=20;i<=29;i++){
+            row += "<tr>";
+            row += "<td>"+i+"</td>";
+            row += "<td>"+meterToFoot(i).toFixed(3)+"</td>";
+            row += "</tr>";
+        }
+        document.getElementById("board2").innerHTML = row;
+    }
+    table2();
+</script>

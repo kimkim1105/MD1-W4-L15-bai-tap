@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sản phẩm</title>
+    <style>
+        button {
+            background-color: green;
+            border-radius: 10%;
+        }
+        table{
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<h2>Add New Product</h2>
+<input type="text" id="newproduct">
+<button onclick="addProduct()">Thêm</button>
+<h2>Display All Product</h2>
+<table id="board"></table>
+<div id="edit">
+</div>
+</body>
+</html>
+<script>
+    let arrayOfProduct = ["Sony", "Samsung", "Iphone"];
+    function listOfProduct(){
+        let row = "";
+        row = '<tr>\n' +
+            '        <th style="text-align: left">Product Name</th>\n' +
+            '        <th style="text-align: left"></th>\n' +
+            '        <th style="text-align: left"></th>\n' +
+            '        <th style="text-align: right">'+arrayOfProduct.length+'products</th>\n' +
+            '    </tr>'
+        for (let i = 0; i < arrayOfProduct.length; i++){
+            row += "<tr>";
+            row += "<td>"+eval("i+1")+"</td>";
+            row += "<td>"+arrayOfProduct[i]+"</td>";
+            row += "<td>" + "<button onclick='editProduct("+i+")'>Sửa</button>" +"</td>";
+            row += "<td>" + "<button onclick='deleteProduct("+i+")'>Xóa</button>" +"</td>";
+            row += "</tr>";
+        }
+        document.getElementById("board").innerHTML = row;
+    }
+    listOfProduct();
+    function addProduct(){
+        let newproduct = document.getElementById("newproduct").value;
+        document.getElementById("newproduct").value = "";
+        arrayOfProduct.push(newproduct);
+        listOfProduct();
+        alert("Thêm sản phẩm mới "+newproduct)
+    }
+    function editProduct(index){
+        let str = "";
+        str = "<input type='text' id='editPro' value='"+arrayOfProduct[index]+"'><button onclick='saveProduct("+index+")'>Save</button>"
+        document.getElementById("edit").innerHTML = str;
+        listOfProduct()
+    }
+    function saveProduct(index){
+        arrayOfProduct[index] = document.getElementById("editPro").value;
+        document.getElementById("edit").innerHTML = "";
+        listOfProduct();
+    }
+    function deleteProduct(index){
+        alert("Xóa sản phẩm "+arrayOfProduct[index])
+        arrayOfProduct.splice(index,1);
+        listOfProduct();
+    }
+</script>
